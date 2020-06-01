@@ -42,9 +42,17 @@ function coco() {
   return div
 };
 
-function remoce() {
+/*function remoce() {
   if (document.getElementById('bye') != undefined || null) {
     document.getElementById("bye").remove();
+  }
+}*/
+
+function remoce() {
+  let byeco = document.querySelector('.flex-box-container-2').querySelectorAll('img')
+  // console.log(byeco);
+  for (let i = 0; i < byeco.length; i++) {
+    byeco[i].remove();
   }
 }
 
@@ -60,8 +68,6 @@ function remoce() {
   let humanChoice = yourChoice.id;
   let message;
   let rand = Math.floor(Math.random(1) * 3);
-
-
   if (rand == 0) {
     botChoice = "rock";
   } else if (rand == 1) {
@@ -69,9 +75,6 @@ function remoce() {
   } else if (rand == 2) {
     botChoice = "scissor";
   };
-
-
-
   if (botChoice == humanChoice) {
     message = "Tie";
   } else if (botChoice == 'rock' && humanChoice == 'paper') {
@@ -89,9 +92,7 @@ function remoce() {
   } else {
     message = "Broken"
   }
-
   //let humanChoices = document.getElementById('flex-box-rps-div').createElement("img");
-
   let div = document.getElementById('flex-box-rps-div');
   let h1 = document.createElement("h1");
   let messages = document.createTextNode(message);
@@ -232,7 +233,36 @@ function randomColor() {
   }
 }
 
-// challenge 5
+// challenge 5 blackjack
+
+// cool on mouseover document.querySelector('#blackjack-hit-button').addEventListener('mouseover', blackjackHit);
+
+let blackjackGame = {
+  'you': {'scoreSpan': '#your-blackjack-result', 'div': '#your-box', 'score': 0},
+  'dealer': {'scoreSpan': '#dealer-blackjack-result', 'div': '#dealer-box', 'score': 0},
+}
+
+const YOU = blackjackGame.you
+const DEALER = blackjackGame.dealer
+
+const hitSound = new Audio('./static/css/sounds/swish.m4a');
+
+
+document.querySelector('#blackjack-hit-button').addEventListener('click', blackjackHit);
+function blackjackHit() {
+  showCard(YOU);
+}
+
+showCard = (activePlayer) => {
+  let cardImage = document.createElement('img');
+  cardImage.src = "./static/css/images/Q.png";
+  document.querySelector(activePlayer.div).appendChild(cardImage);
+  hitSound.play();
+}
+
+blackjackDeal = () => {
+  let yourImages = document.querySelector('#your-box').querySelectorall('img')
+}
 
 
 
