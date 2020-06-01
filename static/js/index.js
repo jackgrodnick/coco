@@ -241,6 +241,7 @@ let blackjackGame = {
   'you': {'scoreSpan': '#your-blackjack-result', 'div': '#your-box', 'score': 0},
   'dealer': {'scoreSpan': '#dealer-blackjack-result', 'div': '#dealer-box', 'score': 0},
   'cards': ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'K', 'J', 'Q', 'A'],
+  'cardsMap': {'2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'K': 10, 'J': 10, 'Q': 10, 'A': [1, 11]}
 }
 
 const YOU = blackjackGame.you
@@ -254,16 +255,25 @@ document.querySelector('#blackjack-deal-button').addEventListener('click', black
 
 
 function blackjackHit() {
-  showCard(YOU);
+  let card = randomCard();
+  showCard(card, YOU);
+  updateScore(card, YOU)
+  showScore(YOU);
+}
+
+function randomCard() {
+  let randomIndex = Math.floor(Math.random() * 13)
+  return blackjackGame.cards[randomIndex];
 }
 
 
-
-function showCard(activePlayer) {
-  let cardImage = document.createElement('img');
-  cardImage.src = "./static/css/images/Q.png";
-  document.querySelector(activePlayer.div).appendChild(cardImage);
-  hitSound.play();
+function showCard(card, activePlayer) {
+  if (activePlayer.score <= 21) {
+    let cardImage = document.createElement('img');
+    cardImage.src = `./static/css/images/${card}.png`;
+    document.querySelector(activePlayer.div).appendChild(cardImage);
+    hitSound.play();
+  }
 };
 
 function blackjackDeal() {
@@ -276,8 +286,61 @@ function blackjackDeal() {
   for (let i = 0; i < dealerImages.length; i++) {
     dealerImages[i].remove();
   }
+  YOU.score = 0;
+  DEALER.score = 0;
+
+  document.querySelector(YOU.scoreSpan).textContent = '0';
+  document.querySelector(YOU.scoreSpan).style.color = 'white'
+  document.querySelector(DEALER.scoreSpan).textContent = '0';
+  document.querySelector(DEALER.scoreSpan).style.color = 'white'
+
 }
 
+function updateScore(card, activePlayer) {
+  // if adding 11 keeps me below 21
+  if (card === 'A') {
+
+  if (activePlayer.score + blackjackGame.cardsMap[card][1] <= 21) {
+    activePlayer.score += blackjackGame.cardsMap[card][1];
+  } else {
+    activePlayer.score += blackjackGame.cardsMap[card][0];
+  }
+} else {
+  activePlayer.score += blackjackGame.cardsMap[card];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  /* if (blackjackGame.cardsMap[card][1] === 11 || blackjackGame.cardsMap[card][0] === 1 && activePlayer.score <= 10) {
+    let card0 = 11;
+    console.log(card0);
+    activePlayer.score += card0;
+  } else if (blackjackGame.cardsMap[card][1] === 11 || blackjackGame.cardsMap[card][0] === 1 && activePlayer.score >= 11) {
+    let card1 = 1;
+    console.log(card1);
+    activePlayer.score += card1;
+  } else {
+    activePlayer.score += blackjackGame.cardsMap[card];
+  } my way */
+}
+
+function showScore(activePlayer) {
+  if (activePlayer.score > 21)  {
+    document.querySelector(activePlayer.scoreSpan).textContent = "BUST";
+    document.querySelector(activePlayer.scoreSpan).style.color = "red";
+  } else {
+  document.querySelector(activePlayer.scoreSpan).textContent = activePlayer.score;
+ }
+}
 
 
 
