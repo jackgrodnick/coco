@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Project #1</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+  </head>
+  <body>
+    <div class="container-1">
+
+      <h2>Challenge 1: Your age in Days</h2>
+      <div class="flex-box-container-1">
+      <div class="div">
+        <button type="button" name="button" class="btn btn-primary" onClick="ageInDays();">Click me</button>
+      </div>
+      <div class="div">
+        <button type="button" name="button" class="btn btn-danger" onclick="reset();">Reset</button>
+      </div>
+      </div>
+
+      <div class="flex-box-container-1">
+        <div class="div" id="flex-box-result">
+
+        </div>
+      </div>
+    </div>
+    <div class="container-2">
+      <h2>Challenge 2: Dog Generator</h2>
+      <button type="button" name="button" class="btn btn-success" id="doggy" onclick="coco();">Gernerate Dog</button>
+      <button type="button" name="button" class="btn btn-danger" onclick="remoce();">reset</button>
+
+      <div class="flex-box-container-2" id="flex-dog-gen"> 
+
+
+
+      </div>
+
+
+
+
+
+    </div>
+    <div class="container-3">
+      <h2>Challenge 3: Rock, Paper, Scissors</h2>
+
+      <div class="flex-box-rps" id="flex-box-rps-div">
+        <img id="rock" src="https://www.magicalkenya.com/wp-content/uploads/2015/01/Rock-Art-in-Turkana-County-Rock-Engravings-David-Coulson_TARA.jpg" alt="rock" height="150px" width="150px" onclick="rpsGame(this);">
+        <img id="paper" src="https://www.offthegridnews.com/wp-content/uploads/2016/08/toilet-paper-1338433_640.jpg" alt="paper" height="150px" width="150px" onclick="rpsGame(this);">
+        <img id="scissor" src="http://proprofs-cdn.s3.amazonaws.com/images/FC/user_images/1848955/10745793060.png" alt="scissor" height="150px" width="150px" onclick="rpsGame(this);">
+      </div>
+
+    </div>
+    <div class="container-4">
+      <h2 id="change-my-color">Challenge 4: Change the Color of All Buttons!</h2>
+      <div class="flex-box-pick-color" id="flex-buttons">
+        <form action="">
+          <select name="backdrop" id="background" onchange="buttonColorChange(this);">
+            <option value="random">Random</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="reset">Reset</option>
+          </select>
+        </form>
+        <button type="button" name="button" class="btn btn-primary">Wee!</button>
+        <button type="button" name="button" class="btn btn-danger">Yahoo!</button>
+        <button type="button" name="button" class="btn btn-warning">Google!</button>
+        <button type="button" name="button" class="btn btn-success">Facebook!</button>
+
+      </div>
+    </div>
+
+    <div class="container-5">
+      <h2>Challenge 5: Blackjack</h2>
+      <h3><span id="blackjack-result">Let's play</span></h3>
+
+      <div class="flex-blackjack-row-1">
+        <div class="your-box">
+          <h2>You: <span id="your-blackjack-result">0</span></h2>
+        </div>
+
+        <div class="dealer-box">
+          <h2>Dealer: <span id="dealer-blackjack-result">0</span></h2>
+        </div>
+      </div>
+
+      <div class="flex-blackjack-row-2">
+        <div>
+          <button type="button" name="button" class="btn-lg btn-primary mr-2" id="blackjack-hit-button">Hit</button>
+          <button type="button" name="button" class="btn-lg btn-warning mr-2" id="blackjack-stand-button">Stand</button>
+          <button type="button" name="button" class="btn-lg btn-danger" id="Blackjack-stand-button">Deal</button>
+        </div>
+      </div>
+
+      <div class="flex-blackjack-row-3">
+        <table>
+          <tr>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Draws</th>
+          </tr>
+
+          <tr>
+            <td><span id="wins">0</span></td>
+            <td><span id="losses">0</span></td>
+            <td><span id="draws">0</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  </body>
+  <script type="text/javascript" <script src="./static/js/index.js" charset="utf-8"></script>
+
+  </script>
+
+</html>
